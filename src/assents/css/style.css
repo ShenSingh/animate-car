@@ -1,0 +1,98 @@
+body {
+    background-color: #f0f0f5;
+    font: 400 14px Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+    /* Correctly setting the background image */
+    background-image: url('../img/sky.jpg');
+    background-repeat: no-repeat; /* Ensures no repeating */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the background image */
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.road, .city {
+    position: absolute;
+    bottom: 0; /* Align at the bottom of the viewport */
+    left: 0;
+    width: 100%; /* Take full width */
+    height: 300px; /* Set height for road and city images */
+    overflow: hidden; /* Hide anything that moves outside the container */
+    display: flex; /* Arrange images in a row */
+}
+
+.road img, .city img {
+    width: 100%; /* Each image takes the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Maintain aspect ratio while covering the area */
+    filter: grayscale(100%); /* Apply grayscale filter */
+    margin: 0;
+    position: relative; /* Use relative to maintain layout */
+    animation: move 10s linear infinite; /* 10s for one complete animation cycle */
+}
+
+/* Keyframes for moving images from right to left */
+@keyframes move {
+    0% {
+        transform: translateX(0); /* Start at the default position */
+    }
+    100% {
+        transform: translateX(-100%); /* Move completely off-screen to the left */
+    }
+}
+
+.city {
+    top: 8.3%; /* Centering the image vertically */
+    animation-delay: 2s; /* Delay the city animation by 2 seconds */
+}
+
+.car img {
+    width: 500px;
+    margin: 0;
+    position: absolute;
+    top: 55%; /* Centering the image vertically */
+    left: 50%; /* Centering the image horizontally */
+    transform: translate(-50%, -50%); /* Adjust to ensure perfect centering */
+    z-index: 1; /* Send the image behind other content, if necessary */
+}
+
+.wheels {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center; /* Centers items horizontally in the grid cells */
+    align-items: center;   /* Centers items vertically in the grid cells */
+    column-gap: 205px; /* Adds 200px space between the columns */
+
+    /* Centering the wheels container */
+    top: 63%; /* Center vertically */
+    left: 49.5%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust the position to truly center the container */
+}
+
+.wheels img {
+    width: 100px;
+    margin: 0;
+    position: relative; /* Keeps relative positioning to respect the grid layout */
+    z-index: -1; /* Sends the image behind other content, if necessary */
+    /* Add rotation */
+    transform: rotate(45deg); /* Rotates the wheel 45 degrees clockwise */
+    animation: rotate-wheel 2s linear infinite; /* Spins the wheel every 2 seconds */
+}
+
+@keyframes rotate-wheel {
+    0% {
+        transform: rotate(0deg); /* Start at 0 degrees */
+    }
+    100% {
+        transform: rotate(360deg); /* Rotate full circle (360 degrees) */
+    }
+}
